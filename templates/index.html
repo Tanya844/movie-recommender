@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Movie Recommender</title>
+    <style>
+        body {
+            font-family: Arial;
+            background: #f4f4f4;
+            padding: 40px;
+        }
+        .box {
+            background: white;
+            padding: 25px;
+            border-radius: 10px;
+            max-width: 400px;
+            margin: auto;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+        input, button {
+            padding: 10px;
+            width: 100%;
+            margin-top: 10px;
+        }
+        button {
+            background-color: #3498db;
+            color: white;
+            border: none;
+        }
+        ul {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="box">
+        <h2>🎬 Movie Recommender</h2>
+        <form method="POST">
+            <label for="user_id">Enter User ID:</label>
+            <input type="number" name="user_id" required placeholder="e.g. 1, 2, 3">
+            <button type="submit">Get Recommendations</button>
+        </form>
+
+        {% if recommendations %}
+            <h3>Top Recommendations:</h3>
+            <ul>
+                {% for movie, score in recommendations.items() %}
+                    <li>{{ movie }} (score: {{ "%.2f"|format(score) }})</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+    </div>
+</body>
+</html>
